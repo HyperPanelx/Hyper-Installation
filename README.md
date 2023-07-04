@@ -3,7 +3,7 @@
 
 ## Installation ubuntu/debian
 ```bash
-bash <(curl -Ls https://raw.githubusercontent.com/HyperPanelx/hyper-installation/master/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/HyperPanelx/Hyper-Installation/master/install.sh)
 ```
 
 ## Tech
