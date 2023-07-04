@@ -21,7 +21,7 @@ sudo git clone https://github.com/HyperPanelx/hyper-installation.git
 
 sudo sh -c  "echo 'API_BASE=http://localhost:6655/' > ./Hyper-admin-panel/.env.production"
 sudo sh -c 'echo "MONGO_PASSWD = \"password\"" > ./hyper-installation/.env'
-sudo python3 ../ssh-api-docker/hash.py
+# sudo python3 ssh-api-docker/hash.py
 read -p "Enter IP address: " ip_address
 read -p "Enter Web Port: " web_port
 read -p "Enter SSH Port: "  ssh_port
