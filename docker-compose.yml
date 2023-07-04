@@ -24,7 +24,7 @@ services:
             ENVPORT: 3838
             ENVMONGOPASS: mongo_password
             ENVUSER: test
-            ENVPASS: Aa123
+            ENVPASS: P@ssw0rd
     web:
         build: 
             context: ../Hyper-admin-panel/
