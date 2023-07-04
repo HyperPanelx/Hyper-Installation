@@ -38,5 +38,5 @@ sudo ufw allow $ssh_port
 # sudo tmux new-session -d -s 'exdate' 'exdate.py'
 cd hyper-installation/
 sudo docker compose up -d 
-sudo rm -rf ./hyper-installation/
-sudo rm -rf ./Hyper-admin-panel/
+sudo rm -rf ../hyper-installation/
+sudo rm -rf ../Hyper-admin-panel/
