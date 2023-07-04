@@ -5,7 +5,7 @@ services:
         container_name: mongodb
         restart: always
         ports:
-            - 17017:17017
+            - 17017:27017
         environment:
             MONGO_INITDB_ROOT_USERNAME: admin
             MONGO_INITDB_ROOT_PASSWORD: $MONGO_PASSWD
@@ -14,7 +14,7 @@ services:
             - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
             # - mongo-volume:/data/db  
     backend:   
-        image:  officialalikhani/ssh_api:v1.0.2
+        image:  officialalikhani/ssh_api:v1.0.3
         container_name: api
         restart: always
         ports:
