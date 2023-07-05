@@ -23,12 +23,16 @@ sudo sh -c  "echo 'API_BASE=http://localhost:6655/' > ./Hyper-admin-panel/.env.p
 sudo sh -c 'echo "MONGO_PASSWD = \"password\"" > ./hyper-installation/.env'
 # sudo python3 ssh-api-docker/hash.py
 read -p "Enter IP address: " ip_address
+read -p "Enter Panel User: " PAUSER
+read -p "Enter Panel Password: " PAPASSWD
 read -p "Enter Web Port: " web_port
 read -p "Enter SSH Port: "  ssh_port
 read -p "Enter DB Password: "  db_passwd
 
 sudo sed -i "s/localhost/$ip_address/g" ./Hyper-admin-panel/.env.production
 sudo sed -i "s/8081/$web_port/g" ./hyper-installation/docker-compose.yml
+sudo sed -i "s/test/$PAUSER/g" ./hyper-installation/docker-compose.yml
+sudo sed -i "s/P@ssw0rd/$PAPASSWD/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/2222/$ssh_port/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/mongo_password/$db_passwd/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/password/$db_passwd/g" ./hyper-installation/.env
