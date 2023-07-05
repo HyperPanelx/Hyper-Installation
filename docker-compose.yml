@@ -14,7 +14,7 @@ services:
             - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
             # - mongo-volume:/data/db  
     backend:   
-        image:  officialalikhani/ssh_api:v1.0.3
+        image:  officialalikhani/ssh_api:v1.0.4
         container_name: api
         restart: always
         ports:
