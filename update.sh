@@ -34,3 +34,4 @@ sudo sed -i "s/P@ssw0rd/$user_panel/g" ./docker-compose.yml
 
 # sudo docker stop api
 sudo docker compose run -d
+sudo rm -rf ./docker-compose.yml
