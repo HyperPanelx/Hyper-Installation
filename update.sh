@@ -32,5 +32,5 @@ sudo sed -i "s/mongo_password/$db_passwd/g" ./docker-compose.yml
 sudo sed -i "s/test/$pass_panel/g" ./docker-compose.yml
 sudo sed -i "s/P@ssw0rd/$user_panel/g" ./docker-compose.yml
 
-sudo docker stop api
+# sudo docker stop api
 sudo docker compose run -d
