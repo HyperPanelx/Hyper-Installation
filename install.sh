@@ -19,7 +19,7 @@ sudo systemctl --now enable docker
 sudo git clone https://github.com/HyperPanelx/hyper-front-vite.git
 sudo git clone https://github.com/HyperPanelx/hyper-installation.git
 
-sudo sh -c  "echo 'APP_API_BASE=http://localhost:6655/' > ./Hyper-admin-panel/.env.production.local"
+sudo sh -c  "echo 'APP_API_BASE=http://localhost:6655/' > ./hyper-front-vite/.env.production.local"
 sudo sh -c 'echo "MONGO_PASSWD = \"password\"" > ./hyper-installation/.env'
 # sudo python3 ssh-api-docker/hash.py
 read -p "Enter IP address: " ip_address
@@ -29,7 +29,7 @@ read -p "Enter Web Port: " web_port
 read -p "Enter SSH Port: "  ssh_port
 read -p "Enter DB Password: "  db_passwd
 
-sudo sed -i "s/localhost/$ip_address/g" ./Hyper-admin-panel/.env.production.local
+sudo sed -i "s/localhost/$ip_address/g" ./hyper-front-vite/.env.production.local
 sudo sed -i "s/8081/$web_port/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/test/$PAUSER/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/P@ssw0rd/$PAPASSWD/g" ./hyper-installation/docker-compose.yml
