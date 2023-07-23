@@ -27,7 +27,7 @@ services:
             ENVPASS: P@ssw0rd
     web:
         build: 
-            context: ../Hyper-admin-panel/
+            context: ../hyper-front-vite/
             dockerfile: Dockerfile
         container_name: web
         restart: always

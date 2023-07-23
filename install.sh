@@ -43,4 +43,4 @@ sudo ufw allow $ssh_port
 cd hyper-installation/
 sudo docker compose up -d 
 sudo rm -rf ../hyper-installation/
-sudo rm -rf ../Hyper-admin-panel/
+sudo rm -rf ../hyper-front-vite/
