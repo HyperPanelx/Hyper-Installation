@@ -38,9 +38,7 @@ sudo sed -i "s/mongo_password/$db_passwd/g" ./hyper-installation/docker-compose.
 sudo sed -i "s/password/$db_passwd/g" ./hyper-installation/.env
 sudo ufw allow $web_port
 sudo ufw allow $ssh_port
-# sudo tmux new-session -d -s 'kill' 'killer.py'
-# sudo tmux new-session -d -s 'exdate' 'exdate.py'
 cd hyper-installation/
 sudo docker compose up -d 
-sudo rm -rf ../hyper-installation/
-sudo rm -rf ../hyper-front-vite/
+# sudo rm -rf ../hyper-installation/
+# sudo rm -rf ../hyper-front-vite/
