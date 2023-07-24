@@ -22,22 +22,22 @@ bash <(curl -Ls https://raw.githubusercontent.com/HyperPanelx/Hyper-Installation
 ## Panel contains 4 main pages
 ### 1- Dashboard
 #### in this page as you can see is server and client status are live visible that is programmed by web socket.
-<img alt="page 1" src="preview/p1.png">
+<img alt="page 1" src="preview/pt1.png">
 
 ### 2- Users
 
 #### this page belongs to users and its operation. You are able to 1- change the password 2- renew expired user 30  3- lock/unlock user 4- download user detail in text file 5- edit user detail 6- generate several user 7- create single user
-<img alt="page 2" src="preview/p2.png">
+<img alt="page 2" src="preview/pt2.png">
 
 ### 3- Online users
 #### in this page is shown the status of online user, which you can disconnect their connection.
-<img alt="page 3" src="preview/p3.png">
+<img alt="page 3" src="preview/pt3.png">
 
 ### 4- Servers
 #### in this page you can see the available servers which you are able to switch between them.
-<img alt="page 4" src="preview/p4.png">
+<img alt="page 4" src="preview/pt4.png">
 
 ### Settings section
 #### by this float button you can configure your panel by opening a modal.
-<img alt="page 5" src="preview/p6.png">
-<img alt="page 6" src="preview/p5.png">
+<img alt="page 5" src="preview/pt6.png">
+<img alt="page 6" src="preview/pt5.png">
