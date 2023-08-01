@@ -3,7 +3,7 @@
 echo 'version: "3"
 services:
   backend:
-    image: officialalikhani/ssh_api:v1.0.9
+    image: officialalikhani/ssh_api:v1.2.0
     container_name: api
     restart: always
     ports:
