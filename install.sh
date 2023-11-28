@@ -1,4 +1,9 @@
 #!/bin/bash
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
 
 sudo apt-get update -y
 sudo dpkg --configure -a
@@ -24,7 +29,7 @@ sudo sh -c 'echo "MONGO_PASSWD = \"password\"" > ./hyper-installation/.env'
 ip_address=$(curl -s https://api.ipify.org)
 # sudo python3 ssh-api-docker/hash.py
 
-echo "You Should Set SubDomain api, treafik, hyper on your DNS Manager on your IP Public"
+echo "${RED}You Should Set SubDomain api, treafik, hyper on your DNS Manager on your IP Public${NC}"
 
 read -p "Enter Email Address: " email_address
 read -p "Enter Domain Name: " domain_name
@@ -34,7 +39,7 @@ read -p "Enter Web Port: " web_port
 read -p "Enter SSH Port: "  ssh_port
 read -p "Enter DB Password: "  db_passwd
 htppassord=$(echo $(htpasswd -nb "$PAUSER" "$PAPASSWD") | sed -e s/\\$/\\$\\$/g)
-sudo sed -i "s/localhost/$ip_address/g" ./hyper-front-vite/.env.production.local
+sudo sed -i "s/localhost/api.$/domain_nam/g" ./hyper-front-vite/.env.production.local
 sudo sed -i "s/__email__/$email_address/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/__domainname__/$domain_name/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/__htpasswd__/$htppassord/g" ./hyper-installation/docker-compose.yml
@@ -48,7 +53,9 @@ sudo ufw allow $web_port
 sudo ufw allow $ssh_port
 cd hyper-installation/
 sudo docker compose up -d 
-# sudo rm -rf ../hyper-installation/
-# sudo rm -rf ../hyper-front-vite/
+sudo rm -rf ../hyper-installation/
+sudo rm -rf ../hyper-front-vite/
 
-echo "https://hyper.$domain_name"
+echo "${GREEN}https://hyper.$domain_name${NC}"
+echo "${GREEN}$PAUSER${NC}"
+echo "${GREEN}$PAPASSWD${NC}"
