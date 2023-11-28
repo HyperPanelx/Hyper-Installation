@@ -22,7 +22,9 @@ htppassord='echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g'
 sudo sh -c  "echo 'APP_API_BASE=http://localhost:6655/' > ./hyper-front-vite/.env.production.local"
 sudo sh -c 'echo "MONGO_PASSWD = \"password\"" > ./hyper-installation/.env'
 # sudo python3 ssh-api-docker/hash.py
+
 echo "You Should Set SubDomain api, treafik, hyper on your DNS Manager on your IP Public"
+
 read -p "Enter IP Address: " ip_address
 read -p "Enter Email Address: " email_address
 read -p "Enter Domain Name: " domain_name
@@ -46,6 +48,6 @@ sudo ufw allow $web_port
 sudo ufw allow $ssh_port
 cd hyper-installation/
 sudo docker compose up -d 
-sudo rm -rf ../hyper-installation/
-sudo rm -rf ../hyper-front-vite/
-echo "https://hyper.domain_name"
+#sudo rm -rf ../hyper-installation/
+#sudo rm -rf ../hyper-front-vite/
+echo "https://hyper.$domain_name"
