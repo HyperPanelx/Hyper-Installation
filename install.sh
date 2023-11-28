@@ -30,11 +30,11 @@ read -p "Enter SSH Port: "  ssh_port
 read -p "Enter DB Password: "  db_passwd
 
 sudo sed -i "s/localhost/$ip_address/g" ./hyper-front-vite/.env.production.local
-sudo sed -i "s/8081/$web_port/g" ./hyper-installation/docker-compose.yml
-sudo sed -i "s/test/$PAUSER/g" ./hyper-installation/docker-compose.yml
-sudo sed -i "s/P@ssw0rd/$PAPASSWD/g" ./hyper-installation/docker-compose.yml
-sudo sed -i "s/2222/$ssh_port/g" ./hyper-installation/docker-compose.yml
-sudo sed -i "s/mongo_password/$db_passwd/g" ./hyper-installation/docker-compose.yml
+sudo sed -i "s/_web_port_/$web_port/g" ./hyper-installation/docker-compose.yml
+sudo sed -i "s/_ENVUSER_/$PAUSER/g" ./hyper-installation/docker-compose.yml
+sudo sed -i "s/_ENVPASS_/$PAPASSWD/g" ./hyper-installation/docker-compose.yml
+sudo sed -i "s/_ssh_port_/$ssh_port/g" ./hyper-installation/docker-compose.yml
+sudo sed -i "s/_mongo_password_/$db_passwd/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/password/$db_passwd/g" ./hyper-installation/.env
 sudo ufw allow $web_port
 sudo ufw allow $ssh_port
