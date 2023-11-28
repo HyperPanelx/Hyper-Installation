@@ -1,5 +1,61 @@
 version: "3"
+
+networks:
+  default:
+    name: web_net
+volumes:
+  traefik-acme:
+    name: traefik-acme
+    
 services:  
+    traefik:
+        image: traefik:v2.4.8
+        container_name: traefik 
+        command:
+          - "--log.level=INFO"
+          - "--log.filepath=/log-file.log"
+          - "--log.format=json"
+          - "--api=true"
+          - "--ping=true"
+          - "--accesslog=true"
+          - "--accesslog.bufferingsize=100"
+          - "--api.insecure=true"
+          - "--providers.docker.endpoint=unix:///var/run/docker.sock"
+          - "--providers.docker.exposedbydefault=false"
+          - "--providers.docker.network=web_net"
+          - "--entrypoints.http.address=:80"
+          - "--entrypoints.https.address=:443"
+          - "--certificatesresolvers.mycert.acme.email=__email__"
+          - "--certificatesresolvers.mycert.acme.storage=/acme/acme.json"
+          - "--certificatesresolvers.mycert.acme.tlschallenge=true"
+          - "--providers.file.filename=/traefik/config.yml"
+        ports:
+          - 80:80
+          - 443:443
+        volumes:
+          - /etc/localtime:/etc/localtime:ro
+          - /var/run/docker.sock:/var/run/docker.sock:ro
+          - traefik-acme:/acme
+          - ./traefik:/traefik
+        networks:
+          - default
+    
+        labels:
+          - "traefik.enable=true"
+          - "traefik.docker.network=web_net"
+          - "traefik.http.routers.traefik.entrypoints=http"
+          - "traefik.http.routers.traefik.rule=Host(`traefik.__domainname__`)"
+          - "traefik.http.routers.traefik.middlewares=https-redirect"
+          - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
+          - "traefik.http.middlewares.web-auth.basicauth.users=__htpasswd__"
+          - "traefik.http.routers.traefik-secure.middlewares=web-auth"
+          - "traefik.http.routers.traefik-secure.entrypoints=https"
+          - "traefik.http.routers.traefik-secure.rule=Host(`traefik.__domainname__`)"
+          - "traefik.http.routers.traefik-secure.tls=true"
+          - "traefik.http.routers.traefik-secure.tls.options=default"
+          - "traefik.http.routers.traefik-secure.tls.certresolver=mycert"
+          - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+          
     mongo:
         image: mongo:4.4.1 # Instead of build you can use 'image: mongo'
         container_name: mongodb
@@ -13,6 +69,9 @@ services:
         volumes:
             - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
             # - mongo-volume:/data/db  
+        networks:
+          - default
+      
     backend:   
         image:  officialalikhani/ssh_api:v1.2.1
         container_name: api
@@ -25,6 +84,23 @@ services:
             ENVMONGOPASS: _mongo_password_
             ENVUSER: _ENVUSER_
             ENVPASS: _ENVPASS_
+        labels:
+             - "traefik.enable=true"
+             - "traefik.docker.network=web_net"
+             - "traefik.http.routers.repo.entrypoints=http"
+             - "traefik.http.routers.repo.rule=Host(`api.__domainname__`)"
+             - "traefik.http.routers.repo.service=repo-secure"
+             - "traefik.http.routers.repo.middlewares=https-redirect"
+             - "traefik.http.routers.repo-secure.entrypoints=https"
+             - "traefik.http.routers.repo-secure.rule=Host(`api.__domainname__`)"
+             - "traefik.http.routers.repo-secure.tls=true"
+             - "traefik.http.routers.repo-secure.tls.options=default"
+             - "traefik.http.routers.repo-secure.tls.certresolver=mycert"
+             - "traefik.http.routers.repo-secure.service=repo-secure"
+             - "traefik.http.services.repo-secure.loadbalancer.server.port=3838"
+        networks:
+              - default
+             
     web:
         build: 
             context: ../hyper-front-vite/
@@ -33,5 +109,21 @@ services:
         restart: always
         ports:
             - _web_port_:3000
+        labels:
+             - "traefik.enable=true"
+             - "traefik.docker.network=web_net"
+             - "traefik.http.routers.repo.entrypoints=http"
+             - "traefik.http.routers.repo.rule=Host(`hyper.__domainname__`)"
+             - "traefik.http.routers.repo.service=repo-secure"
+             - "traefik.http.routers.repo.middlewares=https-redirect"
+             - "traefik.http.routers.repo-secure.entrypoints=https"
+             - "traefik.http.routers.repo-secure.rule=Host(`hyper.__domainname__`)"
+             - "traefik.http.routers.repo-secure.tls=true"
+             - "traefik.http.routers.repo-secure.tls.options=default"
+             - "traefik.http.routers.repo-secure.tls.certresolver=mycert"
+             - "traefik.http.routers.repo-secure.service=repo-secure"
+             - "traefik.http.services.repo-secure.loadbalancer.server.port=_web_port_"
+        networks:
+              - default
 # volumes:
 #   mongo-volume:
