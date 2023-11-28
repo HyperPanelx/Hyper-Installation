@@ -18,7 +18,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo systemctl --now enable docker
 sudo git clone https://github.com/HyperPanelx/hyper-front-vite.git
 sudo git clone https://github.com/HyperPanelx/hyper-installation.git
-htppassord='echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g'
+htppassord=$(echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g)
 sudo sh -c  "echo 'APP_API_BASE=http://localhost:6655/' > ./hyper-front-vite/.env.production.local"
 sudo sh -c 'echo "MONGO_PASSWD = \"password\"" > ./hyper-installation/.env'
 # sudo python3 ssh-api-docker/hash.py
@@ -50,4 +50,5 @@ cd hyper-installation/
 sudo docker compose up -d 
 #sudo rm -rf ../hyper-installation/
 #sudo rm -rf ../hyper-front-vite/
+
 echo "https://hyper.$domain_name"
