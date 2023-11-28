@@ -2,7 +2,7 @@
 
 sudo apt-get update -y
 sudo dpkg --configure -a
-sudo apt-get install ca-certificates curl gnupg git tmux -y
+sudo apt-get install ca-certificates curl gnupg git tmux apache2-utils -y
 sudo install -m 0755 -d /etc/apt/keyrings
 
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
