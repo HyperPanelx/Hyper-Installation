@@ -53,8 +53,8 @@ sudo ufw allow $web_port
 sudo ufw allow $ssh_port
 cd hyper-installation/
 sudo docker compose up -d 
-sudo rm -rf ../hyper-installation/
-sudo rm -rf ../hyper-front-vite/
+# sudo rm -rf ../hyper-installation/
+# sudo rm -rf ../hyper-front-vite/
 
 echo -e "${GREEN}https://hyper.$domain_name${NC}"
 echo -e "${GREEN}$PAUSER${NC}"
