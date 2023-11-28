@@ -48,7 +48,7 @@ sudo ufw allow $web_port
 sudo ufw allow $ssh_port
 cd hyper-installation/
 sudo docker compose up -d 
-sudo rm -rf ../hyper-installation/
-sudo rm -rf ../hyper-front-vite/
+# sudo rm -rf ../hyper-installation/
+# sudo rm -rf ../hyper-front-vite/
 
 echo "https://hyper.$domain_name"
