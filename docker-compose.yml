@@ -19,12 +19,12 @@ services:
         restart: always
         ports:
             - 6655:3838
-            - 2222:22
+            - _ssh_port_:22
         environment:
             ENVPORT: 3838
-            ENVMONGOPASS: mongo_password
-            ENVUSER: test
-            ENVPASS: P@ssw0rd
+            ENVMONGOPASS: _mongo_password_
+            ENVUSER: _ENVUSER_
+            ENVPASS: _ENVPASS_
     web:
         build: 
             context: ../hyper-front-vite/
@@ -32,6 +32,6 @@ services:
         container_name: web
         restart: always
         ports:
-            - 8081:3000
+            - _web_port_:3000
 # volumes:
 #   mongo-volume:
