@@ -21,11 +21,11 @@ sudo git clone https://github.com/HyperPanelx/hyper-installation.git
 
 sudo sh -c  "echo 'APP_API_BASE=http://localhost:6655/' > ./hyper-front-vite/.env.production.local"
 sudo sh -c 'echo "MONGO_PASSWD = \"password\"" > ./hyper-installation/.env'
+ip_address=$(curl -s https://api.ipify.org)
 # sudo python3 ssh-api-docker/hash.py
 
 echo "You Should Set SubDomain api, treafik, hyper on your DNS Manager on your IP Public"
 
-read -p "Enter IP Address: " ip_address
 read -p "Enter Email Address: " email_address
 read -p "Enter Domain Name: " domain_name
 read -p "Enter Panel User: " PAUSER
@@ -33,7 +33,7 @@ read -p "Enter Panel Password: " PAPASSWD
 read -p "Enter Web Port: " web_port
 read -p "Enter SSH Port: "  ssh_port
 read -p "Enter DB Password: "  db_passwd
-htppassord=$(echo $(htpasswd -nb $PAUSER $PAPASSWD) | sed -e s/\\$/\\$\\$/g)
+htppassord=$(echo $(htpasswd -nb "$PAUSER" "$PAPASSWD") | sed -e s/\\$/\\$\\$/g)
 sudo sed -i "s/localhost/$ip_address/g" ./hyper-front-vite/.env.production.local
 sudo sed -i "s/__email__/$email_address/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/__domainname__/$domain_name/g" ./hyper-installation/docker-compose.yml
