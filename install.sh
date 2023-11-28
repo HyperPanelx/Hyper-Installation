@@ -24,12 +24,12 @@ sudo systemctl --now enable docker
 sudo git clone https://github.com/HyperPanelx/hyper-front-vite.git
 sudo git clone https://github.com/HyperPanelx/hyper-installation.git
 
-sudo sh -c  "echo 'APP_API_BASE=http://localhost:6655/' > ./hyper-front-vite/.env.production.local"
+sudo sh -c  "echo 'APP_API_BASE=http://localhost/' > ./hyper-front-vite/.env.production.local"
 sudo sh -c 'echo "MONGO_PASSWD = \"password\"" > ./hyper-installation/.env'
 ip_address=$(curl -s https://api.ipify.org)
 # sudo python3 ssh-api-docker/hash.py
 
-echo "${RED}You Should Set SubDomain api, treafik, hyper on your DNS Manager on your IP Public${NC}"
+echo -e "${RED}You Should Set SubDomain api, treafik, hyper on your DNS Manager on your IP Public${NC}"
 
 read -p "Enter Email Address: " email_address
 read -p "Enter Domain Name: " domain_name
@@ -56,6 +56,6 @@ sudo docker compose up -d
 sudo rm -rf ../hyper-installation/
 sudo rm -rf ../hyper-front-vite/
 
-echo "${GREEN}https://hyper.$domain_name${NC}"
-echo "${GREEN}$PAUSER${NC}"
-echo "${GREEN}$PAPASSWD${NC}"
+echo -e "${GREEN}https://hyper.$domain_name${NC}"
+echo -e "${GREEN}$PAUSER${NC}"
+echo -e "${GREEN}$PAPASSWD${NC}"
