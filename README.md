@@ -6,10 +6,6 @@
 bash <(curl -Ls https://raw.githubusercontent.com/HyperPanelx/Hyper-Installation/master/install.sh)
 ```
 
-## Update ubuntu/debian
-```bash
-bash <(curl -Ls https://raw.githubusercontent.com/HyperPanelx/Hyper-Installation/master/update.sh)
-```
 
 
 ## Tech
