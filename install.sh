@@ -53,6 +53,7 @@ sudo ufw allow $web_port
 sudo ufw allow $ssh_port
 cd hyper-installation/
 sudo docker compose up -d 
+sudo cp docker-compose.yml ..
 sudo rm -rf ../hyper-installation/
 sudo rm -rf ../hyper-front-vite/
 
