@@ -41,8 +41,8 @@ read -p "Enter Panel Password: " PAPASSWD
 read -p "Enter Web Port: " web_port
 read -p "Enter SSH Port: "  ssh_port
 read -p "Enter DB Password: "  db_passwd
-htppassord=$(htpasswd -nb $PAUSER $PAPASSWD | sed -e 's/\\$/\\$\\$/g')
-sudo sed -i "s/__htpasswd__/$htppassord/g" ./hyper-installation/docker-compose.yml
+# htppassord=$(htpasswd -nb $PAUSER $PAPASSWD | sed -e 's/\\$/\\$\\$/g')
+# sudo sed -i "s/__htpasswd__/$htppassord/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/_localhost_/$domain_name/g" ./hyper-front-vite/.env.production.local
 sudo sed -i "s/__email__/$email_address/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/__domainname__/$domain_name/g" ./hyper-installation/docker-compose.yml
@@ -52,7 +52,7 @@ sudo sed -i "s/_ENVPASS_/$PAPASSWD/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/_ssh_port_/$ssh_port/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/_mongo_password_/$db_passwd/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/password/$db_passwd/g" ./hyper-installation/.env
-# sudo sed -i "s/_mongo_password_/$db_passwd/g" ./hyper-installation/mongo-init.js
+sudo sed -i "s/_mongo_password_/$db_passwd/g" ./hyper-installation/mongo-init.js
 sudo ufw allow $web_port
 sudo ufw allow $ssh_port
 cd hyper-installation/
