@@ -42,7 +42,7 @@ read -p "Enter Web Port: " web_port
 read -p "Enter SSH Port: "  ssh_port
 read -p "Enter DB Password: "  db_passwd
 htppassord=$(echo $(htpasswd -nb "$PAUSER" "$PAPASSWD") | sed -e s/\\$/\\$\\$/g)
-echo $htppassord
+echo "$htppassord"
 sudo sed -i "s/__htpasswd__/'$htppassord'/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/_localhost_/'$domain_name'/g" ./hyper-front-vite/.env.production.local
 sudo sed -i "s/__email__/'$email_address'/g" ./hyper-installation/docker-compose.yml
@@ -61,7 +61,7 @@ sudo cp docker-compose.yml ..
 sudo rm -rf ../hyper-installation/
 sudo rm -rf ../hyper-front-vite/
 echo -e "${GREEN}---------HyperPanel-------------${NC}"
-echo -e "URL: ${GREEN}https://hyper.$domain_name${NC}"
-echo -e "Username: ${GREEN}$PAUSER${NC}"
-echo -e "Password: ${GREEN}$PAPASSWD${NC}"
+echo -e "${GREEN} URL: https://hyper.$domain_name${NC}"
+echo -e "${GREEN} Username: $PAUSER${NC}"
+echo -e "${GREEN} Password: $PAPASSWD${NC}"
 echo -e "${GREEN}--------------------------------${NC}"
