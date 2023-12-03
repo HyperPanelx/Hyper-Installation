@@ -43,6 +43,8 @@ read -p "Enter SSH Port: "  ssh_port
 read -p "Enter DB Password: "  db_passwd
 htppassord=$(echo $(htpasswd -nb "$PAUSER" "$PAPASSWD") | sed -e s/\\$/\\$\\$/g)
 echo "$htppassord"
+# sudo sed -i "s/__htpasswd__/'$htppassord'/g" ./hyper-installation/docker-compose.yml
+sudo sed -i "s@__htpasswd__@'$htppassord'@g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/__htpasswd__/'$htppassord'/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/_localhost_/'$domain_name'/g" ./hyper-front-vite/.env.production.local
 sudo sed -i "s/__email__/'$email_address'/g" ./hyper-installation/docker-compose.yml
