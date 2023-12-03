@@ -49,7 +49,7 @@ services:
           - "traefik.http.routers.traefik.rule=Host(`traefik.__domainname__`)"
           - "traefik.http.routers.traefik.middlewares=https-redirect"
           - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
-          - "traefik.http.middlewares.web-auth.basicauth.users=__htpasswd__"
+          - "traefik.http.middlewares.web-auth.basicauth.users=user:$$apr1$$FBZrrPZc$$1NWZjPzQbUGe0XPEmCcfH."
           - "traefik.http.routers.traefik-secure.middlewares=web-auth"
           - "traefik.http.routers.traefik-secure.entrypoints=https"
           - "traefik.http.routers.traefik-secure.rule=Host(`traefik.__domainname__`)"
@@ -66,7 +66,7 @@ services:
             - 17017:27017
         environment:
             MONGO_INITDB_ROOT_USERNAME: admin
-            MONGO_INITDB_ROOT_PASSWORD: _mongo_password_
+            MONGO_INITDB_ROOT_PASSWORD: $MONGO_PASSWD
             MONGO_INITDB_DATABASE: dbuser
         volumes:
             - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
