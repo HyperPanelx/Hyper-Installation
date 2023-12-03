@@ -7,7 +7,7 @@ volumes:
   traefik-acme:
     name: traefik-acme
   mongo-volume:
-    name: Mongodb
+    name: mongo-vol
   api-volume:
     name: api-vol
     
@@ -72,7 +72,7 @@ services:
             MONGO_INITDB_DATABASE: dbuser
         volumes:
             - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-            - Mongodb:/data/db  
+            - mongo-vol:/data/db  
         networks:
           - default
       
