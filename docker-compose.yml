@@ -106,7 +106,7 @@ services:
               - default
               
         volumes:
-          - api-vol:/app
+          - api-vol:/app/data
              
     web:
         build: 
