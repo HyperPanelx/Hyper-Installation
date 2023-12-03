@@ -49,7 +49,7 @@ services:
           - "traefik.http.routers.traefik.rule=Host(`traefik.__domainname__`)"
           - "traefik.http.routers.traefik.middlewares=https-redirect"
           - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
-          - "traefik.http.middlewares.web-auth.basicauth.users=__htpasswd__"
+          - "traefik.http.middlewares.web-auth.basicauth.users=user:$$apr1$$FBZrrPZc$$1NWZjPzQbUGe0XPEmCcfH."
           - "traefik.http.routers.traefik-secure.middlewares=web-auth"
           - "traefik.http.routers.traefik-secure.entrypoints=https"
           - "traefik.http.routers.traefik-secure.rule=Host(`traefik.__domainname__`)"
