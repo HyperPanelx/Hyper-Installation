@@ -59,7 +59,7 @@ services:
           - "traefik.http.services.traefik.loadbalancer.server.port=8080"
           
     mongo:
-        image: mongo:4.4.1 # Instead of build you can use 'image: mongo'
+        image: mongo
         container_name: mongodb
         restart: always
         ports:
