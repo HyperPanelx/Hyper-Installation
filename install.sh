@@ -4,7 +4,7 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
-
+echo -e "${RED}------------HyperPanel-Installation-------------${NC}"
 read -p "Do you want to install the docker? (y/n): " choice
 if [[ $choice == 'y' || $choice == 'Y' ]]; then
     sudo apt-get update -y
@@ -43,7 +43,6 @@ read -p "Enter SSH Port: "  ssh_port
 read -p "Enter DB Password: "  db_passwd
 # htppassord=$(echo $(htpasswd -nb "$PAUSER" "$PAPASSWD") | sed -e s/\\$/\\$\\$/g)
 htppassord=$(htpasswd -nb "$PAUSER" "$PAPASSWD" | sed -e 's/[\/&]/\\&/g')
-echo "$htppassord"
 # sudo sed -i "s/__htpasswd__/'$htppassord'/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/__htpasswd__/$htppassord/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/__htpasswd__/'$htppassord'/g" ./hyper-installation/docker-compose.yml
@@ -64,7 +63,10 @@ sudo cp docker-compose.yml ..
 sudo rm -rf ../hyper-installation/
 sudo rm -rf ../hyper-front-vite/
 echo -e "${GREEN}---------HyperPanel-------------${NC}"
-echo -e "${GREEN} URL: https://hyper.$domain_name${NC}"
+echo -e "${GREEN} HyperPanelURL: https://hyper.$domain_name${NC}"
+echo -e "${GREEN} TraefikPanelURL: https://traefik.$domain_name${NC}"
 echo -e "${GREEN} Username: $PAUSER${NC}"
 echo -e "${GREEN} Password: $PAPASSWD${NC}"
+echo -e "${GREEN} DBPassword: $db_passwd${NC}"
+echo -e "${GREEN} SSHPort: $ssh_port${NC}"
 echo -e "${GREEN}--------------------------------${NC}"
