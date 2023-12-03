@@ -50,12 +50,12 @@ sudo sed -i "s/_localhost_/$domain_name/g" ./hyper-front-vite/.env.production.lo
 sudo sed -i "s/__email__/$email_address/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/__domainname__/$domain_name/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/_web_port_/$web_port/g" ./hyper-installation/docker-compose.yml
-sudo sed -i "s/_ENVUSER_/'$PAUSER'/g" ./hyper-installation/docker-compose.yml
-sudo sed -i "s/_ENVPASS_/'$PAPASSWD'/g" ./hyper-installation/docker-compose.yml
+sudo sed -i "s/_ENVUSER_/$PAUSER/g" ./hyper-installation/docker-compose.yml
+sudo sed -i "s/_ENVPASS_/$PAPASSWD/g" ./hyper-installation/docker-compose.yml
 sudo sed -i "s/_ssh_port_/$ssh_port/g" ./hyper-installation/docker-compose.yml
-sudo sed -i "s/_mongo_password_/'$db_passwd'/g" ./hyper-installation/docker-compose.yml
-sudo sed -i "s/password/'$db_passwd'/g" ./hyper-installation/.env
-sudo sed -i "s/_mongo_password_/'$db_passwd'/g" ./hyper-installation/mongo-init.js
+sudo sed -i "s/_mongo_password_/$db_passwd/g" ./hyper-installation/docker-compose.yml
+sudo sed -i "s/password/$db_passwd/g" ./hyper-installation/.env
+sudo sed -i "s/_mongo_password_/$db_passwd/g" ./hyper-installation/mongo-init.js
 sudo ufw allow $web_port
 sudo ufw allow $ssh_port
 cd hyper-installation/
