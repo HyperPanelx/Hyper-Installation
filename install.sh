@@ -5,22 +5,26 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-sudo apt-get update -y
-sudo dpkg --configure -a
-sudo apt-get install ca-certificates curl gnupg git tmux apache2-utils -y
-sudo install -m 0755 -d /etc/apt/keyrings
-
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-
-sudo chmod a+r /etc/apt/keyrings/docker.gpg
-sudo echo \
-  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-sudo apt-get update -y
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-sudo systemctl --now enable docker
+read -p "Do you want to install the docker? (y/n): " choice
+if [[ $choice == 'y' || $choice == 'Y' ]]; then
+    sudo apt-get update -y
+    sudo dpkg --configure -a
+    sudo apt-get install ca-certificates curl gnupg git tmux apache2-utils -y
+    sudo install -m 0755 -d /etc/apt/keyrings
+    
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    
+    sudo chmod a+r /etc/apt/keyrings/docker.gpg
+    sudo echo \
+      "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+      "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    
+    sudo apt-get update -y
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+    sudo systemctl --now enable docker
+    echo "Packages installed successfully!"
+fi
 sudo git clone https://github.com/HyperPanelx/hyper-front-vite.git
 sudo git clone https://github.com/HyperPanelx/hyper-installation.git
 
