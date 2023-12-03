@@ -103,8 +103,8 @@ services:
         networks:
               - default
               
-        volumes:
-          - api-data:/app/data
+        # volumes:
+        #   - api-data:/app/data
              
     web:
         build: 
