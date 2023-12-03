@@ -55,8 +55,8 @@ sudo docker compose up -d
 sudo cp docker-compose.yml ..
 sudo rm -rf ../hyper-installation/
 sudo rm -rf ../hyper-front-vite/
-echo -e "Password: ${GREEN}---------HyperPanel-------------{NC}"
-echo -e "${GREEN}https://hyper.$domain_name${NC}"
+echo -e "${GREEN}---------HyperPanel-------------${NC}"
+echo -e "URL: ${GREEN}https://hyper.$domain_name${NC}"
 echo -e "Username: ${GREEN}$PAUSER${NC}"
 echo -e "Password: ${GREEN}$PAPASSWD${NC}"
-echo -e "Password: ${GREEN}--------------------------------{NC}"
+echo -e ${GREEN}--------------------------------${NC}"
