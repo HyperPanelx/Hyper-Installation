@@ -6,6 +6,10 @@ networks:
 volumes:
   traefik-acme:
     name: traefik-acme
+  mongo-volume:
+    name: Mongodb
+  api-volume:
+    name: api-vol
     
 services:  
     traefik:
@@ -68,7 +72,7 @@ services:
             MONGO_INITDB_DATABASE: dbuser
         volumes:
             - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-            # - mongo-volume:/data/db  
+            - Mongodb:/data/db  
         networks:
           - default
       
@@ -100,6 +104,9 @@ services:
              - "traefik.http.services.backend-secure.loadbalancer.server.port=3838"
         networks:
               - default
+              
+        volumes:
+          - api-vol:/app
              
     web:
         build: 
@@ -125,5 +132,4 @@ services:
              - "traefik.http.services.web-secure.loadbalancer.server.port=3000"
         networks:
               - default
-# volumes:
-#   mongo-volume:
+
