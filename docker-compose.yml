@@ -66,7 +66,7 @@ services:
             - 17017:27017
         environment:
             MONGO_INITDB_ROOT_USERNAME: admin
-            MONGO_INITDB_ROOT_PASSWORD: $MONGO_PASSWD
+            MONGO_INITDB_ROOT_PASSWORD: _mongo_password_
             MONGO_INITDB_DATABASE: dbuser
         volumes:
             - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
