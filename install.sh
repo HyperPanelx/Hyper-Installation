@@ -27,7 +27,7 @@ sudo git clone https://github.com/HyperPanelx/hyper-installation.git
 sudo sh -c  "echo 'APP_API_BASE=https://api._localhost_/' > ./hyper-front-vite/.env.production.local"
 sudo sh -c 'echo "MONGO_PASSWD = \"password\"" > ./hyper-installation/.env'
 ip_address=$(curl -s https://api.ipify.org)
-
+echo -e "${RED}----------------------------------------------------------------------------------${NC}"
 echo -e "${RED}You Should Set SubDomain api, treafik, hyper on your DNS Manager on your IP Public${NC}"
 
 read -p "Enter Email Address: " email_address
