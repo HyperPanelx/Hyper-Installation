@@ -59,7 +59,7 @@ services:
           - "traefik.http.services.traefik.loadbalancer.server.port=8080"
           
     mongo:
-        image: mongo
+        image: mongo:4
         container_name: mongodb
         restart: always
         ports:
