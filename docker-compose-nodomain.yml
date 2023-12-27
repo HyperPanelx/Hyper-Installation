@@ -1,0 +1,53 @@
+version: "3"
+
+networks:
+  default:
+    name: web_net
+volumes:
+  mongo-data:
+  api-data:
+    
+services:          
+    mongo:
+        image: mongo:4
+        container_name: mongodb
+        restart: always
+        ports:
+            - 17017:27017
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: admin
+            MONGO_INITDB_ROOT_PASSWORD: _mongo_password_
+            MONGO_INITDB_DATABASE: dbuser
+        volumes:
+            - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+            - mongo-data:/data/db  
+        networks:
+          - default
+      
+    backend:   
+        image:  officialalikhani/ssh_api:v1.2.1
+        container_name: api
+        restart: always
+        ports:
+            - 6655:3838
+            - _ssh_port_:22
+        environment:
+            ENVPORT: 3838
+            ENVMONGOPASS: _mongo_password_
+            ENVUSER: _ENVUSER_
+            ENVPASS: _ENVPASS_
+        networks:
+              - default
+        # volumes:
+        #   - api-data:/app/data
+             
+    web:
+        build: 
+            context: ../hyper-front-vite/
+            dockerfile: Dockerfile
+        container_name: web
+        restart: always
+        ports:
+            - _web_port_:3000
+        networks:
+              - default
